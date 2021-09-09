@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import IdeasModel from './idea.model';
 
-export default class PlanModel {
+export default class MealModel {
   id: string = uuid();
   date: Date;
   meal: IdeasModel;

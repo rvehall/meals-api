@@ -1,34 +1,47 @@
 import { Injectable } from '@nestjs/common';
 import admin from 'firebase-admin';
-// import { FirebaseAdmin, InjectFirebaseAdmin } from 'nestjs-firebase';
 import IdeaModel from 'src/models/idea.model';
 
-const ideas: IdeaModel[] = [];
-const idea: IdeaModel = new IdeaModel();
 @Injectable()
 export class IdeaService {
   async getIdeas(): Promise<any> {
-    const doc = await admin.firestore().collection('ideas').get();
-    if (doc.empty) {
-      console.log('No such document!');
-    } else {
-      console.log('Document data:', doc);
-    }
-
-    return doc;
+    const snapshot = await admin.firestore().collection('ideas').get();
+    const data = snapshot.docs.map((doc) => {
+      return { id: doc.id, data: doc.data() };
+    });
+    return data;
   }
-  getIdeaById(id: string): IdeaModel {
+  async getIdeaById(id: string): Promise<IdeaModel> {
+    const idea = new IdeaModel();
+    const snapshot = await admin.firestore().collection('ideas').doc(id).get();
+    idea.id = snapshot.id;
+    idea.image = snapshot.data().image;
+    idea.ingredients = snapshot.data().ingredients;
+    idea.name = snapshot.data().name;
+    idea.createdBy = snapshot.data().createdBy;
+    idea.createdWhen = snapshot.data().createdWhen;
+    idea.modifiedBy = snapshot.data().modifiedBy;
+    idea.modifiedWhen = snapshot.data().modifiedWhen;
     return idea;
   }
-  updateIdea(idea: IdeaModel): boolean {
-    return true;
+  async updateIdea(idea: IdeaModel): Promise<any> {
+    const res = await admin
+      .firestore()
+      .collection('ideas')
+      .doc(idea.id)
+      .set(idea);
+    return res.writeTime;
   }
-  addIdea(idea: IdeaModel): boolean {
-    // db.collection('ideas').add(idea);
-    admin.firestore().collection('ideas').add(idea);
-    return true;
+  async addIdea(idea: IdeaModel): Promise<string> {
+    const res = await admin.firestore().collection('ideas').add(idea);
+    return res.id;
   }
-  deleteIdea(idea: IdeaModel): boolean {
-    return true;
+  async deleteIdea(idea: IdeaModel): Promise<any> {
+    const res = await admin
+      .firestore()
+      .collection('ideas')
+      .doc(idea.id)
+      .delete();
+    return res.writeTime;
   }
 }
