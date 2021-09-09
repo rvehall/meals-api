@@ -7,7 +7,7 @@ export class IdeaController {
   constructor(private readonly ideasService: IdeaService) {}
 
   @Get()
-  getIdeas(): IdeaModel[] {
+  getIdeas(): Promise<any> {
     return this.ideasService.getIdeas();
   }
   @Get()

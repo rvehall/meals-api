@@ -1,12 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import admin from 'firebase-admin';
+// import { FirebaseAdmin, InjectFirebaseAdmin } from 'nestjs-firebase';
 import IdeaModel from 'src/models/idea.model';
 
 const ideas: IdeaModel[] = [];
 const idea: IdeaModel = new IdeaModel();
 @Injectable()
 export class IdeaService {
-  getIdeas(): IdeaModel[] {
-    return ideas;
+  async getIdeas(): Promise<any> {
+    const doc = await admin.firestore().collection('ideas').get();
+    if (doc.empty) {
+      console.log('No such document!');
+    } else {
+      console.log('Document data:', doc);
+    }
+
+    return doc;
   }
   getIdeaById(id: string): IdeaModel {
     return idea;
@@ -15,6 +24,8 @@ export class IdeaService {
     return true;
   }
   addIdea(idea: IdeaModel): boolean {
+    // db.collection('ideas').add(idea);
+    admin.firestore().collection('ideas').add(idea);
     return true;
   }
   deleteIdea(idea: IdeaModel): boolean {
