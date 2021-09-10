@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import admin from 'firebase-admin';
-import IdeasModel from 'src/models/idea.model';
-import MealModel from 'src/models/meal.model';
+import IdeasModel from '../models/idea.model';
+import MealModel from '../models/meal.model';
 
 @Injectable()
 export class MealService {
@@ -36,23 +36,23 @@ export class MealService {
     meal.modifiedWhen = snapshot.data().modifiedWhen;
     return meal;
   }
-  async updateMeal(Meal: MealModel): Promise<any> {
+  async updateMeal(meal: MealModel): Promise<any> {
     const res = await admin
       .firestore()
       .collection('meals')
-      .doc(Meal.id)
-      .set(Meal);
+      .doc(meal.id)
+      .set(meal);
     return res.writeTime;
   }
-  async addMeal(Meal: MealModel): Promise<string> {
-    const res = await admin.firestore().collection('Meal').add(Meal);
+  async addMeal(meal: MealModel): Promise<string> {
+    const res = await admin.firestore().collection('meals').add(meal);
     return res.id;
   }
-  async deleteMeal(Meal: MealModel): Promise<any> {
+  async deleteMeal(meal: MealModel): Promise<any> {
     const res = await admin
       .firestore()
       .collection('Meal')
-      .doc(Meal.id)
+      .doc(meal.id)
       .delete();
     return res.writeTime;
   }

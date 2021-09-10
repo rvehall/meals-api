@@ -1,6 +1,6 @@
 import { Body, Param } from '@nestjs/common';
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
-import IdeaModel from 'src/models/idea.model';
+import IdeaModel from '../models/idea.model';
 import { IdeaService } from './idea.service';
 
 @Controller('ideas')
@@ -18,6 +18,10 @@ export class IdeaController {
   @Post()
   createIdea(@Body() idea: IdeaModel): Promise<string> {
     return this.ideasService.addIdea(idea);
+  }
+  @Post('bulk')
+  createIdeas(@Body() ideas: IdeaModel[]): Promise<string[]> {
+    return this.ideasService.addIdeas(ideas);
   }
   @Put()
   updateIdea(@Body() idea: IdeaModel): Promise<any> {

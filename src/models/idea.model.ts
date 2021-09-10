@@ -3,10 +3,11 @@ import { v4 as uuid } from 'uuid';
 export default class IdeaModel {
   id: string = uuid();
   name: string;
-  image: string;
+  photo: string;
   ingredients: string[];
-  createdBy: string;
-  createdWhen: Date;
-  modifiedBy: string;
-  modifiedWhen: Date;
+  tags: string[];
+  createdBy: string = 'system';
+  createdWhen: Date= new Date();
+  modifiedBy: string = 'system';
+  modifiedWhen: Date = new Date();
 }

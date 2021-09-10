@@ -1,36 +1,36 @@
 import { Body } from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
-import IdeasModel from 'src/models/idea.model';
-import MealModel from 'src/models/Meal.model';
+import IdeasModel from '../models/idea.model';
+import MealModel from '../models/Meal.model';
 import { MealService } from './Meal.service';
 
-@Controller('Meals')
+@Controller('meals')
 export class MealController {
-  constructor(private readonly MealService: MealService) {}
+  constructor(private readonly mealService: MealService) {}
 
   @Get()
   getMeals(): Promise<any[]> {
-    return this.MealService.getMeals();
+    return this.mealService.getMeals();
   }
   @Get(':date')
   getMealsByDate(@Param('date') date: string): Promise<any[]> {
-    return this.MealService.getMealsByDate(date);
+    return this.mealService.getMealsByDate(date);
   }
   @Get(':id')
   getMealById(@Param('id') id: string): Promise<MealModel> {
-    return this.MealService.getMealById(id);
+    return this.mealService.getMealById(id);
   }
   @Post()
-  createMeal(@Body() Meal: MealModel): Promise<string> {
-    return this.MealService.addMeal(Meal);
+  createMeal(@Body() meal: MealModel): Promise<string> {
+    return this.mealService.addMeal(meal);
   }
   @Put()
-  updateMeal(@Body() Meal: MealModel): Promise<any> {
-    return this.MealService.updateMeal(Meal);
+  updateMeal(@Body() meal: MealModel): Promise<any> {
+    return this.mealService.updateMeal(meal);
   }
   @Delete()
-  deleteMeal(idea: MealModel): Promise<any> {
-    return this.MealService.deleteMeal(idea);
+  deleteMeal(meal: MealModel): Promise<any> {
+    return this.mealService.deleteMeal(meal);
   }
 }

@@ -6,8 +6,8 @@ export default class MealModel {
   date: Date;
   meal: IdeasModel;
   name: string;
-  createdBy: string;
-  createdWhen: Date;
-  modifiedBy: string;
-  modifiedWhen: Date;
+  createdBy: string = 'system';
+  createdWhen: Date= new Date();
+  modifiedBy: string = 'system';
+  modifiedWhen: Date = new Date();
 }
