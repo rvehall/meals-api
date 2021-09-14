@@ -20,11 +20,11 @@ jobs:
         with:
           node-version: '14.x'
       
-#       - name: Create firebase config file
-#         uses: frdrwrt/write-to-file@v1.3
-#         with:
-#           filepath: src/config/adminConfig.json
-#           content: ${{secrets.ADMINCONFIG}}
+      - name: Create firebase config file
+        uses: frdrwrt/write-to-file@v1.3
+        with:
+          filepath: src/config/adminConfig.json
+          content: ${{secrets.ADMINCONFIG}}
 
       - name: npm install, build, and test
         run: |
