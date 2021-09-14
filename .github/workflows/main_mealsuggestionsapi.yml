@@ -14,6 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: print secrets
+        run: |
+          echo $FIREBASE_CONFIG_FILE >> src/config/adminConfig.json
+          cat src/config/adminConfig.json
+        shell: bash
+        env:
+         DFIREBASE_CONFIG_FILE : ${{secrets.ADMINCONFIG}}
       - uses: actions/checkout@v2
 
       - name: Set up Node.js version
