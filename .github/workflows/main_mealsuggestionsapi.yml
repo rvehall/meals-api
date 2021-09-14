@@ -25,25 +25,17 @@ jobs:
         with:
           filepath: src/config/adminConfig.json
           content: ${{secrets.ADMINCONFIG}}
-          
-      - uses: borales/actions-yarn@v2.0.0
+
+      - name: npm build and install
+        uses: Jaid/action-npm-install@v1.2.4
         with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build # will run `yarn build` command
-#       - name: npm build and install
-#         uses: Jaid/action-npm-install@v1.2.4
-#         with:
-#           nodeEnv: production
-#           packageManager: npm
+          nodeEnv: production
+          packageManager: npm
       
-#       - name: npm install, build, and test
-#         run: |
-#           npm install
-#           npm update
-#           npm run build --if-present
-#           npm run test --if-present
+      - name: npm install, build, and test
+        run: |
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
