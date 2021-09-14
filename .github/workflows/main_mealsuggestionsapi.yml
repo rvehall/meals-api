@@ -21,7 +21,7 @@ jobs:
           node-version: '14.x'
       
       - name: Create firebase config file
-        uses: du5rte/create-secrets-file@v1
+        uses: joutvhu/write-file@v1.0.0
         with:
           secrets: ${{secrets.ADMINCONFIG}}
           file: adminConfig.json
