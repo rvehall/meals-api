@@ -14,19 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create firebase config file
-        uses: frdrwrt/write-to-file@v1.3
-        with:
-          filepath: src/config/adminConfig.json
-          content: ${{secrets.ADMINCONFIG}}
-      
-# src/config/adminConfig.json
-# ${{secrets.ADMINCONFIG}}
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+      
+      - name: Create firebase config file
+        uses: frdrwrt/write-to-file@v1.3
+        with:
+          filepath: src/config/adminConfig.json
+          content: ${{secrets.ADMINCONFIG}}
 
       - name: npm install, build, and test
         run: |
