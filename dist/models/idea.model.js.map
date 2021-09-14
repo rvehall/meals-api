@@ -1,1 +1,0 @@
-{"version":3,"file":"idea.model.js","sourceRoot":"","sources":["../../src/models/idea.model.ts"],"names":[],"mappings":";;AAAA,+BAAkC;AAElC,MAAqB,SAAS;IAA9B;QACE,OAAE,GAAW,IAAA,SAAI,GAAE,CAAC;QAKpB,cAAS,GAAW,QAAQ,CAAC;QAC7B,gBAAW,GAAQ,IAAI,IAAI,EAAE,CAAC;QAC9B,eAAU,GAAW,QAAQ,CAAC;QAC9B,iBAAY,GAAS,IAAI,IAAI,EAAE,CAAC;IAClC,CAAC;CAAA;AAVD,4BAUC"}

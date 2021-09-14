@@ -10,17 +10,17 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const idea_controller_1 = require("./ideas/idea.controller");
-const idea_service_1 = require("./ideas/idea.service");
-const Meal_controller_1 = require("./Meal/Meal.controller");
-const Meal_service_1 = require("./Meal/Meal.service");
+const suggestions_controller_1 = require("./suggestions/suggestions.controller");
+const suggestions_service_1 = require("./suggestions/suggestions.service");
+const mealprep_controller_1 = require("./mealprep/mealprep.controller");
+const mealprep_service_1 = require("./mealprep/mealprep.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [],
-        controllers: [app_controller_1.AppController, idea_controller_1.IdeaController, Meal_controller_1.MealController],
-        providers: [app_service_1.AppService, idea_service_1.IdeaService, Meal_service_1.MealService],
+        controllers: [app_controller_1.AppController, suggestions_controller_1.SuggestionsController, mealprep_controller_1.MealPrepController],
+        providers: [app_service_1.AppService, suggestions_service_1.SuggestionsService, mealprep_service_1.MealPrepService],
     })
 ], AppModule);
 exports.AppModule = AppModule;
