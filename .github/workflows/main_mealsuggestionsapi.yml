@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: print secrets
         run: |
-          echo $FIREBASE_CONFIG_FILE >> src/config/adminConfig.json
+          touch $FIREBASE_CONFIG_FILE >> src/config/adminConfig.json
           cat src/config/adminConfig.json
         shell: bash
         env:
