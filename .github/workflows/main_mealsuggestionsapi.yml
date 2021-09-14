@@ -27,16 +27,13 @@ jobs:
           output: ./src/config/adminConfig.json
 
       - name: npm build and install
-        uses: Jaid/action-npm-install@v1.2.4
-        with:
-          nodeEnv: production
-          packageManager: npm
+        uses: linchpin/action-build-yarn-npm@master
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: meals-api
-          path: ./dist
+          path: ./
 
   deploy:
     runs-on: ubuntu-latest
