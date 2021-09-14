@@ -21,10 +21,16 @@ jobs:
           node-version: '14.x'
       
       - name: Create firebase config file
-        uses: frdrwrt/write-to-file@v1.3
-        with:
-          filepath: ./process.env
-          content: ${{secrets.ADMINCONFIG}}
+        run: |
+          touch $CONFIG_FILE >> src/config/adminConfig.json
+          cat $CONFIG_FILE 
+        shell: bash
+        env: 
+          CONFIG_FILE : ${{secrets.ADMINCONFIG}}
+#         uses: frdrwrt/write-to-file@v1.3
+#         with:
+#           filepath: ./src/config/adminConfig.json
+#           content: ${{secrets.ADMINCONFIG}}
 
       - name: npm build and install
         uses: Jaid/action-npm-install@v1.2.4
