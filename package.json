@@ -1,8 +1,8 @@
 {
   "name": "meals-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "let's see if adding a description works",
+  "author": "rvehall",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
