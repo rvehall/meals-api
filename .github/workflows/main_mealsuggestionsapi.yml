@@ -14,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: print secrets
-        run: |
-          touch $FIREBASE_CONFIG_FILE >> src/config/adminConfig.json
-          cat src/config/adminConfig.json
-        shell: bash
-        env:
-         DFIREBASE_CONFIG_FILE : ${{secrets.ADMINCONFIG}}
-      - uses: actions/checkout@v2
+      - name: Create firebase config file
+        uses: frdrwrt/write-to-file@v1.3
+        with:
+          filepath: src/config/adminConfig.json
+          content: ${{secrets.ADMINCONFIG}}
+      
+# src/config/adminConfig.json
+# ${{secrets.ADMINCONFIG}}
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1
