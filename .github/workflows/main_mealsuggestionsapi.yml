@@ -23,7 +23,7 @@ jobs:
       - name: Create firebase config file
         uses: frdrwrt/write-to-file@v1.3
         with:
-          filepath: src/config/adminConfig.json
+          filepath: ./process.env
           content: ${{secrets.ADMINCONFIG}}
 
       - name: npm build and install
