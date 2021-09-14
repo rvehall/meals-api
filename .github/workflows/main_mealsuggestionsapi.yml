@@ -21,10 +21,12 @@ jobs:
           node-version: '14.x'
       
       - name: Create firebase config file
-        run: 'echo "$CONFIG_FILE" > src/config/admingConfig.json'
-        shell: bash
-        env: 
-          CONFIG_FILE : ${{secrets.ADMINCONFIG}}
+        uses: du5rte/create-secrets-file@v1
+        with:
+          secrets: ${{secrets.ADMINCONFIG}}
+          file: adminConfig.json
+          mode: json
+          path: ./src/config/adminConfig.json
 #         uses: frdrwrt/write-to-file@v1.3
 #         with:
 #           filepath: ./src/config/adminConfig.json
