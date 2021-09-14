@@ -22,7 +22,7 @@ jobs:
       
       - name: Create firebase config file
         run: |
-          touch $CONFIG_FILE >> src/config/adminConfig.json
+          echo $CONFIG_FILE >> src/config/adminConfig.json
           cat $CONFIG_FILE 
         shell: bash
         env: 
