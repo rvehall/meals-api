@@ -25,10 +25,6 @@ jobs:
         with:
           secret: ${{secrets.ADMINCONFIG}}
           output: ./src/config/adminConfig.json
-#         uses: frdrwrt/write-to-file@v1.3
-#         with:
-#           filepath: ./src/config/adminConfig.json
-#           content: ${{secrets.ADMINCONFIG}}
 
       - name: npm build and install
         uses: Jaid/action-npm-install@v1.2.4
@@ -40,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: meals-api
-          path: .
+          path: ./dist
 
   deploy:
     runs-on: ubuntu-latest
