@@ -26,8 +26,18 @@ jobs:
           secret: ${{secrets.ADMINCONFIG}}
           output: ./src/config/adminConfig.json
 
-      - name: npm build and install
-        uses: linchpin/action-build-yarn-npm@master
+#       - name: npm install
+#         uses: Jaid/action-npm-install@v1.2.4
+#         with:
+#           nodeEnv: production
+#           packageManager: npm
+#           skipIfNodeModulesExist: true
+          
+      - name: build-test-merge-publish
+        uses: bbeesley/build-test-merge-publish@v1.1.0
+        with:
+          install-command: npm install
+          build-command: npm build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
