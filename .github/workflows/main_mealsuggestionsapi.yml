@@ -21,9 +21,7 @@ jobs:
           node-version: '14.x'
       
       - name: Create firebase config file
-        run: |
-          echo $CONFIG_FILE >> src/config/adminConfig.json
-          cat $CONFIG_FILE 
+        run: 'echo "$CONFIG_FILE" > src/config/admingConfig.json'
         shell: bash
         env: 
           CONFIG_FILE : ${{secrets.ADMINCONFIG}}
