@@ -25,7 +25,7 @@ jobs:
       uses: ttd2089/secret-file-action@1.0.0
       with:
         secret: ${{secrets.ADMINCONFIG}}
-        output: ./src/config/adminConfig.json
+        output: src/config/adminConfig.json
     - name: npm install, build, and test
       run: |
         npm install
