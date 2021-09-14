@@ -27,7 +27,7 @@ jobs:
           output: ./src/config/adminConfig.json
           
       - name: npm install, build, and test
-        working-directory: .
+        working-directory: ./
         run: |
           npm install
           npm run build --if-present
