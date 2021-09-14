@@ -21,12 +21,10 @@ jobs:
           node-version: '14.x'
       
       - name: Create firebase config file
-        uses: joutvhu/write-file@v1.0.0
+        uses: ttd2089/secret-file-action@1.0.0
         with:
-          secrets: ${{secrets.ADMINCONFIG}}
-          file: adminConfig.json
-          mode: json
-          path: ./src/config/adminConfig.json
+          secret: ${{secrets.ADMINCONFIG}}
+          output: ./src/config/adminConfig.json
 #         uses: frdrwrt/write-to-file@v1.3
 #         with:
 #           filepath: ./src/config/adminConfig.json
