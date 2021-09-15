@@ -18,39 +18,32 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const admin = __importStar(require("firebase-admin"));
-const fs = __importStar(require("fs"));
+const config_1 = require("@nestjs/config");
 const app_module_1 = require("./app.module");
-const adminConfig_json_1 = __importDefault(require("./config/adminConfig.json"));
+config_1.ConfigModule.forRoot();
 async function bootstrap() {
-    const ssl = process.env.SSL === 'true' ? true : false;
-    let httpsOptions = null;
-    if (ssl) {
-        const keyPath = process.env.SSL_KEY_PATH || '';
-        const certPath = process.env.SSL_CERT_PATH || '';
-        httpsOptions = {
-            key: fs.readFileSync(keyPath),
-            cert: fs.readFileSync(certPath),
-        };
-    }
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, { httpsOptions });
-    const port = Number(process.env.PORT) || 3000;
-    const hostname = process.env.HOSTNAME || 'localhost';
-    const adminConfig = adminConfig_json_1.default;
+    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    const adminConfig = {
+        "type": process.env.TYPE,
+        "project_id": process.env.PROJECT_ID,
+        "private_key_id": process.env.PRIVATE_KEY_ID,
+        "private_key": process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+        "client_email": process.env.CLIENT_EMAIL,
+        "client_id": process.env.CLIENT_ID,
+        "auth_uri": process.env.AUTH_URI,
+        "token_uri": process.env.TOKEN_URL,
+        "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_x509_CERT_URL,
+        "client_x509_cert_url": process.env.CLIENT_x509_CERT_URL
+    };
     admin.initializeApp({
         credential: admin.credential.cert(adminConfig),
         databaseURL: 'meals-97d2d.firebaseapp.com',
     });
     app.enableCors();
-    await app.listen(port, hostname, () => {
-        const address = 'http' + (ssl ? 's' : '') + '://' + hostname + ':' + port + '/';
-        console.log('Listening at ' + address);
-    });
+    await app.listen(3000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
