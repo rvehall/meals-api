@@ -38,9 +38,9 @@ export class SuggestionsService {
       }
     }
 
-    let results = query.searchText != '' ? filteredArray : data;
+    let suggestions = query.searchText != '' ? filteredArray : data;
 
-    return results;
+    return suggestions ? suggestions : []; 
   }
   async getSuggestionById(id: string): Promise<SuggestionModel> {
     console.log(id);
@@ -59,7 +59,7 @@ export class SuggestionsService {
     suggestion.createdWhen = snapshot.data().createdWhen;
     suggestion.modifiedBy = snapshot.data().modifiedBy;
     suggestion.modifiedWhen = snapshot.data().modifiedWhen;
-    return suggestion;
+    return suggestion ? suggestion : new SuggestionModel();
   }
   async updateSuggestion(suggestion: SuggestionModel): Promise<any> {
     const res = await admin
@@ -73,7 +73,6 @@ export class SuggestionsService {
     const res = await admin.firestore().collection('ideas').doc();
     suggestion.id = res.id;
     res.set(suggestion);
-    console.log(suggestion);
     return suggestion.id;
   }
   async addSuggestions(suggestions: SuggestionModel[]): Promise<string[]> {

@@ -7,10 +7,10 @@ import MealPrepModel from '../models/mealprep.model';
 export class MealPrepService {
   async getMealPreps(): Promise<any[]> {
     const snapshot = await admin.firestore().collection('mealPreps').get();
-    const data = snapshot.docs.map((doc) => {
+    const mealPreps = snapshot.docs.map((doc) => {
       return { id: doc.id, data: doc.data() };
     });
-    return data;
+    return mealPreps ? mealPreps : [];
   }
   async getMealPrepsByDate(date: string): Promise<any[]> {
     const snapshot = await admin
@@ -18,10 +18,10 @@ export class MealPrepService {
       .collection('mealPreps')
       .where('date', '==', date)
       .get();
-    const data = snapshot.docs.map((doc) => {
+    const mealPreps = snapshot.docs.map((doc) => {
       return { id: doc.id, data: doc.data() };
     });
-    return data;
+    return mealPreps ? mealPreps : [];
   }
   async getMealPrepById(id: string): Promise<MealPrepModel> {
     const mealPrep = new MealPrepModel();
@@ -35,7 +35,7 @@ export class MealPrepService {
     mealPrep.createdWhen = snapshot.data().createdWhen;
     mealPrep.modifiedBy = snapshot.data().modifiedBy;
     mealPrep.modifiedWhen = snapshot.data().modifiedWhen;
-    return mealPrep;
+    return mealPrep ? mealPrep : new MealPrepModel();
   }
   async updateMealPrep(mealPrep: MealPrepModel): Promise<any> {
     const res = await admin

@@ -16,10 +16,10 @@ const mealprep_model_1 = __importDefault(require("../models/mealprep.model"));
 let MealPrepService = class MealPrepService {
     async getMealPreps() {
         const snapshot = await firebase_admin_1.default.firestore().collection('mealPreps').get();
-        const data = snapshot.docs.map((doc) => {
+        const mealPreps = snapshot.docs.map((doc) => {
             return { id: doc.id, data: doc.data() };
         });
-        return data;
+        return mealPreps ? mealPreps : [];
     }
     async getMealPrepsByDate(date) {
         const snapshot = await firebase_admin_1.default
@@ -27,10 +27,10 @@ let MealPrepService = class MealPrepService {
             .collection('mealPreps')
             .where('date', '==', date)
             .get();
-        const data = snapshot.docs.map((doc) => {
+        const mealPreps = snapshot.docs.map((doc) => {
             return { id: doc.id, data: doc.data() };
         });
-        return data;
+        return mealPreps ? mealPreps : [];
     }
     async getMealPrepById(id) {
         const mealPrep = new mealprep_model_1.default();
@@ -44,7 +44,7 @@ let MealPrepService = class MealPrepService {
         mealPrep.createdWhen = snapshot.data().createdWhen;
         mealPrep.modifiedBy = snapshot.data().modifiedBy;
         mealPrep.modifiedWhen = snapshot.data().modifiedWhen;
-        return mealPrep;
+        return mealPrep ? mealPrep : new mealprep_model_1.default();
     }
     async updateMealPrep(mealPrep) {
         const res = await firebase_admin_1.default

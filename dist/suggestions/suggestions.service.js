@@ -48,8 +48,8 @@ let SuggestionsService = class SuggestionsService {
                 filteredArray = _.unionBy(nameResults, ingredientResults, tagResults, 'name');
             }
         }
-        let results = query.searchText != '' ? filteredArray : data;
-        return results;
+        let suggestions = query.searchText != '' ? filteredArray : data;
+        return suggestions ? suggestions : [];
     }
     async getSuggestionById(id) {
         console.log(id);
@@ -68,7 +68,7 @@ let SuggestionsService = class SuggestionsService {
         suggestion.createdWhen = snapshot.data().createdWhen;
         suggestion.modifiedBy = snapshot.data().modifiedBy;
         suggestion.modifiedWhen = snapshot.data().modifiedWhen;
-        return suggestion;
+        return suggestion ? suggestion : new suggestion_model_1.default();
     }
     async updateSuggestion(suggestion) {
         const res = await firebase_admin_1.default
@@ -82,7 +82,6 @@ let SuggestionsService = class SuggestionsService {
         const res = await firebase_admin_1.default.firestore().collection('ideas').doc();
         suggestion.id = res.id;
         res.set(suggestion);
-        console.log(suggestion);
         return suggestion.id;
     }
     async addSuggestions(suggestions) {
