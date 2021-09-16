@@ -5,5 +5,5 @@ export declare class SuggestionsService {
     updateSuggestion(suggestion: SuggestionModel): Promise<any>;
     addSuggestion(suggestion: SuggestionModel): Promise<string>;
     addSuggestions(suggestions: SuggestionModel[]): Promise<string[]>;
-    deleteSuggestion(suggestion: SuggestionModel): Promise<any>;
+    deleteSuggestion(id: string): Promise<any>;
 }

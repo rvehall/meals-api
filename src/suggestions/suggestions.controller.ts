@@ -27,8 +27,8 @@ export class SuggestionsController {
   updateSuggestion(@Body() suggestion: SuggestionModel): Promise<any> {
     return this.suggestionsService.updateSuggestion(suggestion);
   }
-  @Delete()
-  deleteSuggestion(suggestion: SuggestionModel): Promise<boolean> {
-    return this.suggestionsService.deleteSuggestion(suggestion);
+  @Delete(':id')
+  deleteSuggestion(@Param('id') id: string): Promise<boolean> {
+    return this.suggestionsService.deleteSuggestion(id);
   }
 }

@@ -39,8 +39,8 @@ let SuggestionsController = class SuggestionsController {
     updateSuggestion(suggestion) {
         return this.suggestionsService.updateSuggestion(suggestion);
     }
-    deleteSuggestion(suggestion) {
-        return this.suggestionsService.deleteSuggestion(suggestion);
+    deleteSuggestion(id) {
+        return this.suggestionsService.deleteSuggestion(id);
     }
 };
 __decorate([
@@ -79,9 +79,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SuggestionsController.prototype, "updateSuggestion", null);
 __decorate([
-    (0, common_2.Delete)(),
+    (0, common_2.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [suggestion_model_1.default]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], SuggestionsController.prototype, "deleteSuggestion", null);
 SuggestionsController = __decorate([

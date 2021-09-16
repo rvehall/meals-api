@@ -52,8 +52,13 @@ let SuggestionsService = class SuggestionsService {
         return results;
     }
     async getSuggestionById(id) {
+        console.log(id);
         const suggestion = new suggestion_model_1.default();
-        const snapshot = await firebase_admin_1.default.firestore().collection('suggestions').doc(id).get();
+        const snapshot = await firebase_admin_1.default
+            .firestore()
+            .collection('ideas')
+            .doc(id)
+            .get();
         suggestion.id = snapshot.data().id;
         suggestion.photo = snapshot.data().photo;
         suggestion.tags = snapshot.data().tags;
@@ -68,13 +73,13 @@ let SuggestionsService = class SuggestionsService {
     async updateSuggestion(suggestion) {
         const res = await firebase_admin_1.default
             .firestore()
-            .collection('suggestions')
+            .collection('ideas')
             .doc(suggestion.id)
             .set(suggestion);
         return res.writeTime;
     }
     async addSuggestion(suggestion) {
-        const res = await firebase_admin_1.default.firestore().collection('suggestions').doc();
+        const res = await firebase_admin_1.default.firestore().collection('ideas').doc();
         suggestion.id = res.id;
         res.set(suggestion);
         console.log(suggestion);
@@ -83,18 +88,18 @@ let SuggestionsService = class SuggestionsService {
     async addSuggestions(suggestions) {
         const ids = [];
         suggestions.forEach(async (suggestion) => {
-            const res = await firebase_admin_1.default.firestore().collection('suggestions').doc();
+            const res = await firebase_admin_1.default.firestore().collection('ideas').doc();
             suggestion.id = res.id;
             res.set(suggestion);
             ids.push(suggestion.id);
         });
         return ids;
     }
-    async deleteSuggestion(suggestion) {
+    async deleteSuggestion(id) {
         const res = await firebase_admin_1.default
             .firestore()
-            .collection('suggestions')
-            .doc(suggestion.id)
+            .collection('ideas')
+            .doc(id)
             .delete();
         return res.writeTime;
     }

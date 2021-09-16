@@ -8,5 +8,5 @@ export declare class SuggestionsController {
     createSuggestion(suggestion: SuggestionModel): Promise<string>;
     createSuggestions(suggestions: SuggestionModel[]): Promise<string[]>;
     updateSuggestion(suggestion: SuggestionModel): Promise<any>;
-    deleteSuggestion(suggestion: SuggestionModel): Promise<boolean>;
+    deleteSuggestion(id: string): Promise<boolean>;
 }
