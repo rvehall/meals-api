@@ -37,9 +37,9 @@ jobs:
     - name: Pull from Heroku
       run: git fetch --all --unshallow
       
-    - name: Heroku Build
-      uses: CDNievas/heroku-action@v1.0
+    - name: Deploy to Heroku
+      uses: AkhileshNS/heroku-deploy@v3.12.12
       with:
-        heroku_app_name: secure-tor-55719
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
         heroku_email: rvehall@gmail.com
+        heroku_app_name: secure-tor-55719
