@@ -5,8 +5,8 @@ import MealPrepModel from '../models/mealprep.model';
 
 @Injectable()
 export class MealPrepService {
-  async getMealPreps(): Promise<any[]> {
-    const snapshot = await admin.firestore().collection('mealPreps').get();
+  async getMealPreps(user: string): Promise<any[]> {
+    const snapshot = await admin.firestore().collection('mealPreps').where('createdBy', '==', user).get();
     const mealPreps = snapshot.docs.map((doc) => {
       return { id: doc.id, data: doc.data() };
     });

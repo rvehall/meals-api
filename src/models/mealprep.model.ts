@@ -7,6 +7,7 @@ export default class MealPrepModel {
   meal: SuggestionModel;
   name: string;
   type: string;
+  isDone: boolean = false;
   createdBy: string = 'system';
   createdWhen: Date= new Date();
   modifiedBy: string = 'system';
