@@ -21,20 +21,23 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 14.x
+        
     - name: Create firebase config file
       uses: ttd2089/secret-file-action@1.0.0
       with:
         secret: ${{secrets.ADMINCONFIG}}
         output: .env
+        
     - name: npm install, build, and test
       run: |
         npm install
         npm run build --if-present
         npm run test --if-present
         
+    - name: Pull from Heroku
+      run: git fetch --all --unshallow
+      
     - name: Heroku Build
-    # You may pin to the exact commit or the version.
-    # uses: behe/heroku-build@33144872cee51ac497ed1e10f561214af9399bc1
       uses: CDNievas/heroku-action@v1.0
       with:
         heroku_app_name: secure-tor-55719
