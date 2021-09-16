@@ -43,7 +43,11 @@ async function bootstrap() {
         databaseURL: 'meals-97d2d.firebaseapp.com',
     });
     app.enableCors();
-    await app.listen(3000);
+    const port = process.env.PORT ? process.env.PORT : '3000';
+    const hostname = process.env.HOSTNAME ? process.env.HOSTNAME : 'localhost';
+    await app.listen(port, hostname, () => {
+        console.error(`server listening on ${hostname}:${port}`);
+    });
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

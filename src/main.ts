@@ -31,6 +31,11 @@ async function bootstrap() {
 
   app.enableCors();
 
-  await app.listen(process.env.PORT);
+  const port = process.env.PORT ? process.env.PORT : '3000';
+  const hostname = process.env.HOSTNAME ? process.env.HOSTNAME : 'localhost';
+
+  await app.listen(port, hostname, () => {
+    console.error(`server listening on ${hostname}:${port}`);
+  });
 }
 bootstrap();
