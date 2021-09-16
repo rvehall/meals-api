@@ -46,7 +46,9 @@ export class MealPrepService {
     return res.writeTime;
   }
   async addMealPrep(mealPrep: MealPrepModel): Promise<string> {
-    const res = await admin.firestore().collection('mealPreps').add(mealPrep);
+    const res = await admin.firestore().collection('mealPreps').doc();
+    mealPrep.id = res.id
+    res.set(mealPrep);
     return res.id;
   }
   async deleteMealPrep(mealPrep: MealPrepModel): Promise<any> {

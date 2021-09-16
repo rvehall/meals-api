@@ -55,7 +55,9 @@ let MealPrepService = class MealPrepService {
         return res.writeTime;
     }
     async addMealPrep(mealPrep) {
-        const res = await firebase_admin_1.default.firestore().collection('mealPreps').add(mealPrep);
+        const res = await firebase_admin_1.default.firestore().collection('mealPreps').doc();
+        mealPrep.id = res.id;
+        res.set(mealPrep);
         return res.id;
     }
     async deleteMealPrep(mealPrep) {
