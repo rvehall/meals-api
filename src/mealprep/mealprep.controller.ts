@@ -9,9 +9,9 @@ import { MealPrepService } from './mealprep.service';
 export class MealPrepController {
   constructor(private readonly mealPrepService: MealPrepService) {}
 
-  @Get()
-  getMealPreps(): Promise<any[]> {
-    return this.mealPrepService.getMealPreps();
+  @Get(':user')
+  getMealPreps(@Param('user') user: string): Promise<any[]> {
+    return this.mealPrepService.getMealPreps(user);
   }
   @Get(':date')
   getMealPrepsByDate(@Param('date') date: string): Promise<any[]> {
