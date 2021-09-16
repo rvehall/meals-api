@@ -4,6 +4,7 @@ const uuid_1 = require("uuid");
 class MealPrepModel {
     constructor() {
         this.id = (0, uuid_1.v4)();
+        this.isDone = false;
         this.createdBy = 'system';
         this.createdWhen = new Date();
         this.modifiedBy = 'system';

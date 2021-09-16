@@ -1,10 +1,9 @@
 import { v4 as uuid } from 'uuid';
-import SuggestionModel from './suggestion.model';
 
 export default class MealPrepModel {
   id: string = uuid();
   date: Date;
-  meal: SuggestionModel;
+  meal: string;
   name: string;
   type: string;
   isDone: boolean = false;

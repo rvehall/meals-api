@@ -1,10 +1,10 @@
-import SuggestionModel from './suggestion.model';
 export default class MealPrepModel {
     id: string;
     date: Date;
-    meal: SuggestionModel;
+    meal: string;
     name: string;
     type: string;
+    isDone: boolean;
     createdBy: string;
     createdWhen: Date;
     modifiedBy: string;

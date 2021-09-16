@@ -25,8 +25,8 @@ let MealPrepController = class MealPrepController {
     constructor(mealPrepService) {
         this.mealPrepService = mealPrepService;
     }
-    getMealPreps() {
-        return this.mealPrepService.getMealPreps();
+    getMealPreps(user) {
+        return this.mealPrepService.getMealPreps(user);
     }
     getMealPrepsByDate(date) {
         return this.mealPrepService.getMealPrepsByDate(date);
@@ -45,9 +45,10 @@ let MealPrepController = class MealPrepController {
     }
 };
 __decorate([
-    (0, common_3.Get)(),
+    (0, common_3.Get)(':user'),
+    __param(0, (0, common_2.Param)('user')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MealPrepController.prototype, "getMealPreps", null);
 __decorate([

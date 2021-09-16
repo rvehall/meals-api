@@ -14,8 +14,8 @@ const common_1 = require("@nestjs/common");
 const firebase_admin_1 = __importDefault(require("firebase-admin"));
 const mealprep_model_1 = __importDefault(require("../models/mealprep.model"));
 let MealPrepService = class MealPrepService {
-    async getMealPreps() {
-        const snapshot = await firebase_admin_1.default.firestore().collection('mealPreps').get();
+    async getMealPreps(user) {
+        const snapshot = await firebase_admin_1.default.firestore().collection('mealPreps').where('createdBy', '==', user).get();
         const mealPreps = snapshot.docs.map((doc) => {
             return { id: doc.id, data: doc.data() };
         });

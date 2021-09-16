@@ -1,6 +1,6 @@
 import MealPrepModel from '../models/mealprep.model';
 export declare class MealPrepService {
-    getMealPreps(): Promise<any[]>;
+    getMealPreps(user: string): Promise<any[]>;
     getMealPrepsByDate(date: string): Promise<any[]>;
     getMealPrepById(id: string): Promise<MealPrepModel>;
     updateMealPrep(mealPrep: MealPrepModel): Promise<any>;

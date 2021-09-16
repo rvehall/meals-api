@@ -3,7 +3,7 @@ import { MealPrepService } from './mealprep.service';
 export declare class MealPrepController {
     private readonly mealPrepService;
     constructor(mealPrepService: MealPrepService);
-    getMealPreps(): Promise<any[]>;
+    getMealPreps(user: string): Promise<any[]>;
     getMealPrepsByDate(date: string): Promise<any[]>;
     getMealPrepById(id: string): Promise<MealPrepModel>;
     createMealPrep(mealPrep: MealPrepModel): Promise<string>;
