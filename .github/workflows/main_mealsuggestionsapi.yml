@@ -33,9 +33,6 @@ jobs:
         npm install
         npm run build --if-present
         npm run test --if-present
-        
-    - name: Pull from Heroku
-      run: git fetch --all --unshallow
       
     - name: Deploy to Heroku
       uses: AkhileshNS/heroku-deploy@v3.12.12
