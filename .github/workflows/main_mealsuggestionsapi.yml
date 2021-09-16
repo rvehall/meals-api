@@ -40,4 +40,3 @@ jobs:
         heroku_app_name: secure-tor-55719
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
         heroku_email: rvehall@gmail.com
-        env_file: .env
