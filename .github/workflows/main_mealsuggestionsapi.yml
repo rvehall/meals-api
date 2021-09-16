@@ -35,11 +35,9 @@ jobs:
     - name: Heroku Build
     # You may pin to the exact commit or the version.
     # uses: behe/heroku-build@33144872cee51ac497ed1e10f561214af9399bc1
-      uses: behe/heroku-build@v1
+      uses: CDNievas/heroku-action@v1.0
       with:
-        # Name of Heroku application
-        app-name: secure-tor-55719
-        # API key with the deploy role
-        api-key: ${{ secrets.HEROKU_API_KEY }}
-        # Directory to upload
-        path: .
+        heroku_app_name: secure-tor-55719
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_email: rvehall@gmail.com
+        env_file: .env
