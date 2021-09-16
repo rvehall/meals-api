@@ -8,7 +8,7 @@ export class MealPrepService {
   async getMealPreps(user: string): Promise<any[]> {
     const snapshot = await admin.firestore().collection('mealPreps').where('createdBy', '==', user).get();
     const mealPreps = snapshot.docs.map((doc) => {
-      return { id: doc.id, data: doc.data() };
+      return doc.data();
     });
     return mealPreps ? mealPreps : [];
   }
@@ -19,7 +19,7 @@ export class MealPrepService {
       .where('date', '==', date)
       .get();
     const mealPreps = snapshot.docs.map((doc) => {
-      return { id: doc.id, data: doc.data() };
+      return doc.data();
     });
     return mealPreps ? mealPreps : [];
   }

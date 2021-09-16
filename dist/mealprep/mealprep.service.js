@@ -17,7 +17,7 @@ let MealPrepService = class MealPrepService {
     async getMealPreps(user) {
         const snapshot = await firebase_admin_1.default.firestore().collection('mealPreps').where('createdBy', '==', user).get();
         const mealPreps = snapshot.docs.map((doc) => {
-            return { id: doc.id, data: doc.data() };
+            return doc.data();
         });
         return mealPreps ? mealPreps : [];
     }
@@ -28,7 +28,7 @@ let MealPrepService = class MealPrepService {
             .where('date', '==', date)
             .get();
         const mealPreps = snapshot.docs.map((doc) => {
-            return { id: doc.id, data: doc.data() };
+            return doc.data();
         });
         return mealPreps ? mealPreps : [];
     }
