@@ -35,13 +35,14 @@ let MealPrepController = class MealPrepController {
         return this.mealPrepService.getMealPrepById(id);
     }
     createMealPrep(mealPrep) {
-        return this.mealPrepService.addMealPrep(JSON.parse(mealPrep));
+        console.log(mealPrep);
+        return this.mealPrepService.addMealPrep(mealPrep);
     }
     updateMealPrep(mealPrep) {
         return this.mealPrepService.updateMealPrep(mealPrep);
     }
-    deleteMealPrep(mealPrep) {
-        return this.mealPrepService.deleteMealPrep(mealPrep);
+    deleteMealPrep(id) {
+        return this.mealPrepService.deleteMealPrep(id);
     }
 };
 __decorate([
@@ -80,9 +81,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MealPrepController.prototype, "updateMealPrep", null);
 __decorate([
-    (0, common_3.Delete)(),
+    (0, common_3.Delete)(':id'),
+    __param(0, (0, common_2.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [mealprep_model_1.default]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], MealPrepController.prototype, "deleteMealPrep", null);
 MealPrepController = __decorate([

@@ -60,11 +60,11 @@ let MealPrepService = class MealPrepService {
         res.set(mealPrep);
         return res.id;
     }
-    async deleteMealPrep(mealPrep) {
+    async deleteMealPrep(id) {
         const res = await firebase_admin_1.default
             .firestore()
             .collection('MealPrep')
-            .doc(mealPrep.id)
+            .doc(id)
             .delete();
         return res.writeTime;
     }

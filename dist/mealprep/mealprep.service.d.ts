@@ -5,5 +5,5 @@ export declare class MealPrepService {
     getMealPrepById(id: string): Promise<MealPrepModel>;
     updateMealPrep(mealPrep: MealPrepModel): Promise<any>;
     addMealPrep(mealPrep: MealPrepModel): Promise<string>;
-    deleteMealPrep(mealPrep: MealPrepModel): Promise<any>;
+    deleteMealPrep(id: string): Promise<any>;
 }

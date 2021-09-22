@@ -51,11 +51,11 @@ export class MealPrepService {
     res.set(mealPrep);
     return res.id;
   }
-  async deleteMealPrep(mealPrep: MealPrepModel): Promise<any> {
+  async deleteMealPrep(id: string): Promise<any> {
     const res = await admin
       .firestore()
       .collection('MealPrep')
-      .doc(mealPrep.id)
+      .doc(id)
       .delete();
     return res.writeTime;
   }
