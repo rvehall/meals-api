@@ -22,8 +22,8 @@ export class MealPrepController {
     return this.mealPrepService.getMealPrepById(id);
   }
   @Post()
-  createMealPrep(@Body() mealPrep: MealPrepModel): Promise<string> {
-    return this.mealPrepService.addMealPrep(mealPrep);
+  createMealPrep(@Body() mealPrep: any): Promise<string> {
+    return this.mealPrepService.addMealPrep(JSON.parse(mealPrep));
   }
   @Put()
   updateMealPrep(@Body() mealPrep: MealPrepModel): Promise<any> {

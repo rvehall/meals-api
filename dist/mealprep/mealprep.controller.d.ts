@@ -6,7 +6,7 @@ export declare class MealPrepController {
     getMealPreps(user: string): Promise<any[]>;
     getMealPrepsByDate(date: string): Promise<any[]>;
     getMealPrepById(id: string): Promise<MealPrepModel>;
-    createMealPrep(mealPrep: MealPrepModel): Promise<string>;
+    createMealPrep(mealPrep: any): Promise<string>;
     updateMealPrep(mealPrep: MealPrepModel): Promise<any>;
     deleteMealPrep(mealPrep: MealPrepModel): Promise<any>;
 }

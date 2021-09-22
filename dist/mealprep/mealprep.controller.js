@@ -35,7 +35,7 @@ let MealPrepController = class MealPrepController {
         return this.mealPrepService.getMealPrepById(id);
     }
     createMealPrep(mealPrep) {
-        return this.mealPrepService.addMealPrep(mealPrep);
+        return this.mealPrepService.addMealPrep(JSON.parse(mealPrep));
     }
     updateMealPrep(mealPrep) {
         return this.mealPrepService.updateMealPrep(mealPrep);
@@ -69,7 +69,7 @@ __decorate([
     (0, common_3.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [mealprep_model_1.default]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MealPrepController.prototype, "createMealPrep", null);
 __decorate([
