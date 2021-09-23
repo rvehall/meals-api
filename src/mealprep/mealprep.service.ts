@@ -52,9 +52,10 @@ export class MealPrepService {
     return res.id;
   }
   async deleteMealPrep(id: string): Promise<any> {
+    console.log(id)
     const res = await admin
       .firestore()
-      .collection('MealPrep')
+      .collection('mealPreps')
       .doc(id)
       .delete();
     return res.writeTime;

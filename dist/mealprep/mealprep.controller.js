@@ -42,6 +42,7 @@ let MealPrepController = class MealPrepController {
         return this.mealPrepService.updateMealPrep(mealPrep);
     }
     deleteMealPrep(id) {
+        console.log(id);
         return this.mealPrepService.deleteMealPrep(id);
     }
 };

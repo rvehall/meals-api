@@ -4,6 +4,7 @@ import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
 import SuggestionModel from '../models/suggestion.model';
 import MealPrepModel from '../models/mealprep.model';
 import { MealPrepService } from './mealprep.service';
+import { Console } from 'console';
 
 @Controller('preps')
 export class MealPrepController {
@@ -32,6 +33,7 @@ export class MealPrepController {
   }
   @Delete(':id')
   deleteMealPrep(@Param('id') id: string): Promise<any> {
+    console.log(id);
     return this.mealPrepService.deleteMealPrep(id);
   }
 }
