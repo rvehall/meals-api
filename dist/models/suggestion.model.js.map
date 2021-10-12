@@ -1,1 +1,0 @@
-{"version":3,"file":"suggestion.model.js","sourceRoot":"","sources":["../../src/models/suggestion.model.ts"],"names":[],"mappings":";;AAAA,+BAAkC;AAElC,MAAqB,eAAe;IAApC;QACE,OAAE,GAAW,IAAA,SAAI,GAAE,CAAC;QAKpB,cAAS,GAAW,QAAQ,CAAC;QAC7B,gBAAW,GAAQ,IAAI,IAAI,EAAE,CAAC;QAC9B,eAAU,GAAW,QAAQ,CAAC;QAC9B,iBAAY,GAAS,IAAI,IAAI,EAAE,CAAC;IAClC,CAAC;CAAA;AAVD,kCAUC"}

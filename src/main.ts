@@ -1,41 +1,25 @@
 import { NestFactory } from '@nestjs/core';
-import * as admin from 'firebase-admin';
-import { ServiceAccount } from 'firebase-admin';
-import * as fs from 'fs';
-import { ConfigModule } from '@nestjs/config';
-
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
+import { Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
-
-ConfigModule.forRoot();
+import * as hbs from 'hbs';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const adminConfig: ServiceAccount = {
-    "type": process.env.TYPE,
-    "project_id": process.env.PROJECT_ID,
-    "private_key_id": process.env.PRIVATE_KEY_ID,
-    "private_key": process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
-    "client_email": process.env.CLIENT_EMAIL,
-    "client_id": process.env.CLIENT_ID,
-    "auth_uri": process.env.AUTH_URI,
-    "token_uri": process.env.TOKEN_URL,
-    "auth_provider_x509_cert_url": process.env.AUTH_PROVIDER_x509_CERT_URL,
-    "client_x509_cert_url": process.env.CLIENT_x509_CERT_URL
-  } as ServiceAccount
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const logger = new Logger('App');
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
 
-  // Initialize the firebase admin app
-  admin.initializeApp({
-    credential: admin.credential.cert(adminConfig),
-    databaseURL: 'meals-97d2d.firebaseapp.com',
-  });
-
-  app.enableCors();
 
   const port = process.env.PORT ? process.env.PORT : '3000';
   const hostname = '0.0.0.0';
 
   await app.listen(port, hostname, () => {
-    console.error(`server listening on ${hostname}:${port}`);
+    logger.log(`server listening on ${hostname}:${port}`);
   });
 }
 bootstrap();
+
+

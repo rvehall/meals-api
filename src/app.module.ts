@@ -6,10 +6,14 @@ import { SuggestionsController } from './suggestions/suggestions.controller';
 import { SuggestionsService } from './suggestions/suggestions.service';
 import { MealPrepController } from './mealprep/mealprep.controller';
 import { MealPrepService } from './mealprep/mealprep.service';
+import { FirebaseAuthStrategy } from './firebase/firebase-auth.strategy';
+import { ConfigModule } from '@nestjs/config';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController, SuggestionsController, MealPrepController],
-  providers: [AppService, SuggestionsService, MealPrepService],
+  imports: [ConfigModule.forRoot({ isGlobal: true })],
+  controllers: [AppController, SuggestionsController, MealPrepController, AuthController],
+  providers: [AppService, SuggestionsService, MealPrepService, AuthService, FirebaseAuthStrategy],
 })
 export class AppModule {}

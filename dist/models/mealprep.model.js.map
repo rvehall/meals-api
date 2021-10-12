@@ -1,1 +1,0 @@
-{"version":3,"file":"mealprep.model.js","sourceRoot":"","sources":["../../src/models/mealprep.model.ts"],"names":[],"mappings":";;AAAA,+BAAkC;AAElC,MAAqB,aAAa;IAAlC;QACE,OAAE,GAAW,IAAA,SAAI,GAAE,CAAC;QAKpB,WAAM,GAAY,KAAK,CAAC;QACxB,cAAS,GAAW,QAAQ,CAAC;QAC7B,gBAAW,GAAQ,IAAI,IAAI,EAAE,CAAC;QAC9B,eAAU,GAAW,QAAQ,CAAC;QAC9B,iBAAY,GAAS,IAAI,IAAI,EAAE,CAAC;IAClC,CAAC;CAAA;AAXD,gCAWC"}
