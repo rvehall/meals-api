@@ -1,7 +1,7 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Param, Render } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
-@Controller('')
+@Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Get('login')
@@ -14,5 +14,10 @@ export class AuthController {
   @Render('signup')
   signup() {
     return;
+  }
+
+  @Get(':id')
+  verifyToken(@Param(':id') id: string) {
+      this.authService.verifyToken(id);
   }
 }

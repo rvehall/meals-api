@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import admin from 'firebase-admin';
-import SuggestionModel from '../models/suggestion.model';
 import MealPrepModel from '../models/mealprep.model';
 
 @Injectable()
