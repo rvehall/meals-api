@@ -10,8 +10,9 @@ async function bootstrap() {
   const logger = new Logger('App');
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  // hbs.registerPartials(join(__dirname, '..', 'views/partials'));
   app.setViewEngine('hbs');
-
+  app.set('view options', { layout: 'main' });
 
   const port = process.env.PORT ? process.env.PORT : '3000';
   const hostname = '0.0.0.0';
@@ -20,6 +21,5 @@ async function bootstrap() {
     logger.log(`server listening on ${hostname}:${port}`);
   });
 }
+
 bootstrap();
-
-

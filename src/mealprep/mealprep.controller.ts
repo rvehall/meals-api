@@ -1,11 +1,10 @@
 import { Controller, Delete, Get, Patch, Post, Put, Param, Body , UseGuards } from '@nestjs/common';
-import SuggestionModel from '../models/suggestion.model';
 import MealPrepModel from '../models/mealprep.model';
 import { MealPrepService } from './mealprep.service';
-// import { FirebaseAuthGuard } from 'src/firebase/firebase-auth.guard';
+import { FirebaseAuthGuard } from 'src/firebase/firebase-auth.guard';
 
 @Controller('preps')
-// @UseGuards(FirebaseAuthGuard)
+@UseGuards(FirebaseAuthGuard)
 export class MealPrepController {
   constructor(private readonly mealPrepService: MealPrepService) {}
 

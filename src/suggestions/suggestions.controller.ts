@@ -2,10 +2,10 @@ import { Body, Param, Query, UseGuards } from '@nestjs/common';
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import SuggestionModel from '../models/suggestion.model';
 import { SuggestionsService } from './suggestions.service';
-// import { FirebaseAuthGuard } from 'src/firebase/firebase-auth.guard';
+import { FirebaseAuthGuard } from 'src/firebase/firebase-auth.guard';
 
 @Controller('suggestions')
-// @UseGuards(FirebaseAuthGuard)
+@UseGuards(FirebaseAuthGuard)
 export class SuggestionsController {
   constructor(private readonly suggestionsService: SuggestionsService) {}
 

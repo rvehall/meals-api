@@ -1,25 +1,8 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Strategy, ExtractJwt } from 'passport-firebase-jwt';
-import * as firebaseConfig from './firebase.config.json';
 import * as firebase from 'firebase-admin';
-import { ServiceAccount } from 'firebase-admin';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-
-
-// console.log(process.env.TYPE)
-// const firebase_params = {
-//   type: process.env.TYPE,
-//   project_id: process.env.PROJECT_ID,
-//   private_key_id: process.env.PRIVATE_KEY_ID,
-//   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
-//   client_email: process.env.CLIENT_EMAIL,
-//   client_id: process.env.CLIENT_ID,
-//   auth_uri: process.env.AUTH_URI,
-//   token_uri: process.env.TOKEN_URL,
-//   auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_x509_CERT_URL,
-//   client_x509_cert_url: process.env.CLIENT_x509_CERT_URL
-// } as ServiceAccount;
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class FirebaseAuthStrategy extends PassportStrategy(
@@ -27,7 +10,7 @@ export class FirebaseAuthStrategy extends PassportStrategy(
   'firebase-auth',
 ) {
   private defaultApp: any;
-  private firebase_params: any; 
+  private firebase_params: any;
   constructor(private configService: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -44,7 +27,9 @@ export class FirebaseAuthStrategy extends PassportStrategy(
       token_uri: this.configService.get<string>('.TOKEN_URL'),
       auth_provider_x509_cert_url: this.configService.get<string>('AUTH_PROVIDER_x509_CERT_URL'),
       client_x509_cert_url: this.configService.get<string>('CLIENT_x509_CERT_URL')
-    } as ServiceAccount;
+    } as firebase.ServiceAccount;
+
+
     this.defaultApp = firebase.initializeApp({
       credential: firebase.credential.cert(this.firebase_params),
     });

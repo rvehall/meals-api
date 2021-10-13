@@ -1,19 +1,17 @@
 import { Module } from '@nestjs/common';
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SuggestionsController } from './suggestions/suggestions.controller';
-import { SuggestionsService } from './suggestions/suggestions.service';
-import { MealPrepController } from './mealprep/mealprep.controller';
-import { MealPrepService } from './mealprep/mealprep.service';
 import { FirebaseAuthStrategy } from './firebase/firebase-auth.strategy';
-import { ConfigModule } from '@nestjs/config';
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
+import { ResourcesModule } from './resources/resources.module';
 
+import { ConfigModule } from '@nestjs/config';
+import { SuggestionsController } from './suggestions/suggestions.controller';
+import { MealPrepController } from './mealprep/mealprep.controller';
+import { SuggestionsService } from './suggestions/suggestions.service';
+import { MealPrepService } from './mealprep/mealprep.service';
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true })],
-  controllers: [AppController, SuggestionsController, MealPrepController, AuthController],
-  providers: [AppService, SuggestionsService, MealPrepService, AuthService, FirebaseAuthStrategy],
+  controllers: [AppController, SuggestionsController, MealPrepController],
+  providers: [AppService, SuggestionsService, MealPrepService, FirebaseAuthStrategy],
 })
 export class AppModule {}
