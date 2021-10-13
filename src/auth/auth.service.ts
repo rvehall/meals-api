@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import admin from 'firebase-admin';
-import { logger } from 'handlebars';
 
 @Injectable()
 export class AuthService {
@@ -8,11 +7,17 @@ export class AuthService {
     return 'Hello World!';
   }
 
-  async verifyToken(id: string): Promise<any> {
-      admin.auth().verifyIdToken(id)
-        .then((res: any) => res)
-        .catch((err: any) => {
-            logger.log(1, err);
-        })
+  async isTokenValid(idToken: string): Promise<any> {
+    const date = Math.round(Date.now() / 1000);
+    return admin
+      .auth()
+      .verifyIdToken(idToken)
+      .then((decodedToken) => {
+        const uid = decodedToken.uid;
+        return date < decodedToken.exp;
+      })
+      .catch((error) => {
+        return error
+      });
   }
 }
