@@ -45,12 +45,9 @@ export class MealPrepService {
       .orderBy('meal')
       .startAt(id).endAt(id)
       .get();
-    console.log(snapshot.docs)
     const mealPreps = snapshot.docs.map((doc) => {
-      console.log(doc.data())
       return doc.data();
     });
-    // const mealPreps = [];
     return mealPreps ? mealPreps : [];
   }
 
@@ -70,7 +67,6 @@ export class MealPrepService {
     return res.id;
   }
   async deleteMealPrep(id: string): Promise<any> {
-    console.log(id)
     const res = await admin
       .firestore()
       .collection('mealPreps')

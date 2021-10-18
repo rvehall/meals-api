@@ -14,7 +14,6 @@ export class SuggestionsService {
     return data ? data : []; 
   }
   async getSuggestionById(id: string): Promise<SuggestionModel> {
-    console.log(id);
     const suggestion = new SuggestionModel();
     const snapshot = await admin
       .firestore()

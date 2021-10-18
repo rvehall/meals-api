@@ -34,7 +34,6 @@ export class MealPrepController {
   }
   @Delete(':id')
   deleteMealPrep(@Param('id') id: string): Promise<any> {
-    console.log(id);
     return this.mealPrepService.deleteMealPrep(id);
   }
 }
