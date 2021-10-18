@@ -11,8 +11,8 @@ loginForm.addEventListener('submit', (e) => {
     .signInWithEmailAndPassword(email, password)
     .then(({ user }) => {
       return user.getIdToken().then((idToken) => {
-        //TODO: Update second url to use the heroku address
-        window.location.host == '0.0.0.0:3000' ? window.location.href = `http://localhost:8080/callback/${idToken}` : window.location.href = `http://localhost:8080/callback/${idToken}`;
+        //TODO: change second route to heroku route
+          window.location.host == '0.0.0.0:3000' ? window.location.href = `http://localhost:8080/callback/${idToken}` : window.location.href = `http://localhost:8080/callback/${idToken}`;
       });
     })
     .catch((err) => {

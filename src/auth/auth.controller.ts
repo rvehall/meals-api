@@ -18,6 +18,6 @@ export class AuthController {
 
   @Get(':id')
   isTokenValid(@Param('id') id: string): Promise<any> {
-      return this.authService.isTokenValid(id);
+      return this.authService.verifyToken(id);
   }
 }

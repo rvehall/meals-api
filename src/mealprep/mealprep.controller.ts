@@ -20,9 +20,12 @@ export class MealPrepController {
   getMealPrepById(@Param('id') id: string): Promise<MealPrepModel> {
     return this.mealPrepService.getMealPrepById(id);
   }
+  @Get('activity/:user/:id')
+  getMealPrepsBySuggestion(@Param('user') user: string, @Param('id') id: string): Promise<any[]> {
+    return this.mealPrepService.getMealsBySuggestion(user, id);
+  }
   @Post()
   createMealPrep(@Body() mealPrep: any): Promise<string> {
-    console.log(mealPrep)
     return this.mealPrepService.addMealPrep(mealPrep);
   }
   @Put()

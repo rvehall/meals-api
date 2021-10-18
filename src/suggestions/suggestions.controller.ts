@@ -5,7 +5,6 @@ import { SuggestionsService } from './suggestions.service';
 import { FirebaseAuthGuard } from '../firebase/firebase-auth.guard';
 
 @Controller('suggestions')
-@UseGuards(FirebaseAuthGuard)
 export class SuggestionsController {
   constructor(private readonly suggestionsService: SuggestionsService) {}
 
@@ -18,18 +17,22 @@ export class SuggestionsController {
     return this.suggestionsService.getSuggestionById(id);
   }
   @Post()
+  @UseGuards(FirebaseAuthGuard)
   createSuggestion(@Body() suggestion: SuggestionModel): Promise<string> {
     return this.suggestionsService.addSuggestion(suggestion);
   }
   @Post('bulk')
+  @UseGuards(FirebaseAuthGuard)
   createSuggestions(@Body() suggestions: SuggestionModel[]): Promise<string[]> {
     return this.suggestionsService.addSuggestions(suggestions);
   }
   @Put()
+  @UseGuards(FirebaseAuthGuard)
   updateSuggestion(@Body() suggestion: SuggestionModel): Promise<any> {
     return this.suggestionsService.updateSuggestion(suggestion);
   }
   @Delete(':id')
+  @UseGuards(FirebaseAuthGuard)
   deleteSuggestion(@Param('id') id: string): Promise<boolean> {
     return this.suggestionsService.deleteSuggestion(id);
   }

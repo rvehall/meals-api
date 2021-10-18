@@ -36,6 +36,24 @@ export class MealPrepService {
     mealPrep.modifiedWhen = snapshot.data().modifiedWhen;
     return mealPrep ? mealPrep : new MealPrepModel();
   }
+
+  async getMealsBySuggestion(user: string, id: string): Promise<any[]> {
+    const snapshot = await admin
+      .firestore()
+      .collection('mealPreps')
+      .where('createdBy', '==', user)
+      .orderBy('meal')
+      .startAt(id).endAt(id)
+      .get();
+    console.log(snapshot.docs)
+    const mealPreps = snapshot.docs.map((doc) => {
+      console.log(doc.data())
+      return doc.data();
+    });
+    // const mealPreps = [];
+    return mealPreps ? mealPreps : [];
+  }
+
   async updateMealPrep(mealPrep: MealPrepModel): Promise<any> {
     const res = await admin
       .firestore()
@@ -44,6 +62,7 @@ export class MealPrepService {
       .set(mealPrep);
     return res.writeTime;
   }
+
   async addMealPrep(mealPrep: MealPrepModel): Promise<string> {
     const res = await admin.firestore().collection('mealPreps').doc();
     mealPrep.id = res.id

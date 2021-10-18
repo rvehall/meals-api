@@ -7,17 +7,20 @@ export class AuthService {
     return 'Hello World!';
   }
 
-  async isTokenValid(idToken: string): Promise<any> {
+  async verifyToken(idToken: string): Promise<any> {
     const date = Math.round(Date.now() / 1000);
-    return admin
+    const res = await admin
       .auth()
       .verifyIdToken(idToken)
-      .then((decodedToken) => {
-        const uid = decodedToken.uid;
-        return date < decodedToken.exp;
-      })
-      .catch((error) => {
-        return error
-      });
+    const dr = await res;
+    const response = {
+      isLoggedIn: date < dr.exp,
+      uid: dr.uid,
+      photo: dr.picture,
+      email: dr.email,
+      isVerified: dr.email_verified
+    }
+
+    return response;
   }
 }

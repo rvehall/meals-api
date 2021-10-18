@@ -13,6 +13,7 @@ import { MealPrepService } from './mealprep/mealprep.service';
 
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
+
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController, SuggestionsController, MealPrepController, AuthController],

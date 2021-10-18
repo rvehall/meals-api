@@ -11,36 +11,7 @@ export class SuggestionsService {
       return doc.data();
     });
 
-    let filteredArray = [];
-
-    if (query != {}) {
-      if (query?.searchText != '') {
-        let nameResults = data.filter((mealPrep: any) =>
-          mealPrep.name.toLowerCase().includes(query?.searchText.toLowerCase()),
-        );
-        let tagResults = data.filter((mealPrep: any) =>
-          mealPrep.tags.some((t: string) =>
-            t.includes(query?.searchText.toLowerCase()),
-          ),
-        );
-        let ingredientResults = data.filter((mealPrep: any) =>
-          mealPrep.ingredients.some((i: string) =>
-            i.includes(query?.searchText.toLowerCase()),
-          ),
-        );
-
-        filteredArray = _.unionBy(
-          nameResults,
-          ingredientResults,
-          tagResults,
-          'name',
-        );
-      }
-    }
-
-    let suggestions = query.searchText != '' ? filteredArray : data;
-
-    return suggestions ? suggestions : []; 
+    return data ? data : []; 
   }
   async getSuggestionById(id: string): Promise<SuggestionModel> {
     console.log(id);
@@ -59,8 +30,10 @@ export class SuggestionsService {
     suggestion.createdWhen = snapshot.data().createdWhen;
     suggestion.modifiedBy = snapshot.data().modifiedBy;
     suggestion.modifiedWhen = snapshot.data().modifiedWhen;
+
     return suggestion ? suggestion : new SuggestionModel();
   }
+
   async updateSuggestion(suggestion: SuggestionModel): Promise<any> {
     const res = await admin
       .firestore()
