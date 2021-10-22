@@ -50,6 +50,8 @@ $ npm run test:cov
 
 This uses the firebase-admin configuration. This can be downloaded from your firebase console (`Project Settings` > `Service accounts` > `Generate new private key`). Create a new folder under `src` called `config` and place the configuration file there. 
 
+The configuration is in a `.env` file that is being ignored by `git`.
+
 
 ## License
 
